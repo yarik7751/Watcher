@@ -11,6 +11,38 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/navigation" />
+            <option value="$PROJECT_DIR$/core/ui" />
+            <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/calendar" />
+            <option value="$PROJECT_DIR$/feature/calendar/api" />
+            <option value="$PROJECT_DIR$/feature/calendar/impl" />
+            <option value="$PROJECT_DIR$/feature/home" />
+            <option value="$PROJECT_DIR$/feature/home/api" />
+            <option value="$PROJECT_DIR$/feature/home/impl" />
+            <option value="$PROJECT_DIR$/feature/layoutsandbox" />
+            <option value="$PROJECT_DIR$/feature/layoutsandbox/api" />
+            <option value="$PROJECT_DIR$/feature/layoutsandbox/impl" />
+            <option value="$PROJECT_DIR$/feature/minesweeper" />
+            <option value="$PROJECT_DIR$/feature/minesweeper-gamefield" />
+            <option value="$PROJECT_DIR$/feature/minesweeper-gamefield/api" />
+            <option value="$PROJECT_DIR$/feature/minesweeper-gamefield/impl" />
+            <option value="$PROJECT_DIR$/feature/minesweeper-settings" />
+            <option value="$PROJECT_DIR$/feature/minesweeper-settings/api" />
+            <option value="$PROJECT_DIR$/feature/minesweeper-settings/impl" />
+            <option value="$PROJECT_DIR$/feature/minesweeper/api" />
+            <option value="$PROJECT_DIR$/feature/minesweeper/impl" />
+            <option value="$PROJECT_DIR$/feature/rendernode" />
+            <option value="$PROJECT_DIR$/feature/rendernode/api" />
+            <option value="$PROJECT_DIR$/feature/rendernode/impl" />
+            <option value="$PROJECT_DIR$/feature/start" />
+            <option value="$PROJECT_DIR$/feature/start/api" />
+            <option value="$PROJECT_DIR$/feature/start/impl" />
+            <option value="$PROJECT_DIR$/feature/subcomposelayoutsandbox" />
+            <option value="$PROJECT_DIR$/feature/subcomposelayoutsandbox/api" />
+            <option value="$PROJECT_DIR$/feature/subcomposelayoutsandbox/impl" />
+            <option value="$PROJECT_DIR$/feature/testgetuserdata" />
             <option value="$PROJECT_DIR$/utils" />
           </set>
         </option>
