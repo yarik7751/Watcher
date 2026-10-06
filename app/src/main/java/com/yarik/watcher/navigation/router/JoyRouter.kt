@@ -1,87 +1,133 @@
 package com.yarik.watcher.navigation.router
 
 import android.os.Parcelable
-import com.github.terrakok.cicerone.ResultListener
-import com.github.terrakok.cicerone.Router
+import androidx.navigation.NavController
 import com.yarik.watcher.navigation.JoyScreen
-import com.yarik.watcher.utils.minusOneElement
+import com.yarik.watcher.navigation.JoyScreensRegistry
+import javax.inject.Inject
+import javax.inject.Singleton
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.launch
 
-class JoyRouter(val router: Router) : ScreensFlow, CurrentArgs {
+/**
+ * Фасад над [NavController] с прежним контрактом навигации (те же глаголы,
+ * что были у Cicerone-обёртки): [navigateTo], [replaceScreen], [newRootScreen],
+ * [backTo], [exit], [newChain], [newRootChain], [finishChain].
+ *
+ * Подключается к конкретному NavController через [attach] при создании NavHost
+ * и отключается через [detach]. [screensFlow] зеркалирует back stack через
+ * [JoyScreensRegistry].
+ */
+@Singleton
+class JoyRouter @Inject constructor() : ScreensFlow, CurrentArgs {
+
+    private val attachScope = CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
+
+    private var navController: NavController? = null
+    private var backStackCollector: Job? = null
 
     override val screensFlow = MutableStateFlow<List<JoyScreen<*>>>(emptyList())
 
-    fun navigateTo(screen: JoyScreen<*>) {
-        this@JoyRouter.router.navigateTo(screen.screen)
-
-        screensFlow.value.plus(screen).let {
-            screensFlow.tryEmit(it)
+    fun attach(navController: NavController) {
+        this.navController = navController
+        backStackCollector?.cancel()
+        backStackCollector = attachScope.launch {
+            navController.currentBackStack.collect { entries ->
+                screensFlow.value = entries.mapNotNull { entry ->
+                    JoyScreensRegistry.byRoute(entry.destination.route)
+                }
+            }
         }
     }
 
+    fun detach() {
+        backStackCollector?.cancel()
+        backStackCollector = null
+        navController = null
+    }
+
+    fun navigateTo(screen: JoyScreen<*>) {
+        navController?.navigate(screen.route)
+    }
+
     fun newRootScreen(screen: JoyScreen<*>) {
-        this@JoyRouter.router.newRootScreen(screen.screen)
-        screensFlow.tryEmit(
-            listOf(screen)
-        )
+        navController?.navigate(screen.route) {
+            popUpTo(0) { inclusive = true }
+        }
     }
 
     fun replaceScreen(screen: JoyScreen<*>) {
-        this@JoyRouter.router.replaceScreen(screen.screen)
-
-        screensFlow.value.minusOneElement().plus(screen).let {
-            screensFlow.tryEmit(it)
+        val controller = navController ?: return
+        val currentRoute = controller.currentDestination?.route
+        if (currentRoute != null) {
+            controller.navigate(screen.route) {
+                popUpTo(currentRoute) { inclusive = true }
+            }
+        } else {
+            controller.navigate(screen.route)
         }
     }
 
     fun backTo(screen: JoyScreen<*>?) {
-        this@JoyRouter.router.backTo(screen?.screen)
-
-        val lastIndex = screensFlow.value.lastIndexOf(screen).takeIf { it > 0 } ?: return
-        screensFlow.value.subList(0, lastIndex + 1).let {
-            screensFlow.tryEmit(it)
+        val controller = navController ?: return
+        if (screen != null) {
+            controller.popBackStack(screen.route, inclusive = false)
+        } else {
+            controller.popBackStack(controller.graph.startDestinationId, inclusive = false)
         }
     }
 
     fun newChain(vararg screens: JoyScreen<*>) {
-        this@JoyRouter.router.newChain(*screens.map { it.screen }.toTypedArray())
-
-        screensFlow.value.plus(screens).let {
-            screensFlow.tryEmit(it)
-        }
+        val controller = navController ?: return
+        screens.forEach { screen -> controller.navigate(screen.route) }
     }
 
     fun newRootChain(vararg screens: JoyScreen<*>) {
-        this@JoyRouter.router.newRootChain(*screens.map { it.screen }.toTypedArray())
-
-        screensFlow.value = screens.toList()
+        val controller = navController ?: return
+        val chain = screens.toList()
+        val root = chain.firstOrNull() ?: return
+        newRootScreen(root)
+        chain.drop(1).forEach { screen -> controller.navigate(screen.route) }
     }
 
+    /**
+     * Выход из текущего флоу: возврат к start destination графа.
+     */
     fun finishChain() {
-        this@JoyRouter.router.finishChain()
-
-        screensFlow.value = emptyList()
+        val controller = navController ?: return
+        controller.popBackStack(controller.graph.startDestinationId, inclusive = false)
     }
 
     fun exit() {
-        this@JoyRouter.router.exit()
-
-        screensFlow.value.minusOneElement().let {
-            screensFlow.tryEmit(it)
-        }
+        navController?.popBackStack()
     }
 
-    fun setResultListener(
-        key: String,
-        listener: ResultListener
-    ) = this@JoyRouter.router.setResultListener(key, listener)
-
+    /**
+     * Отправляет результат предыдущему в стеке экрану (в его SavedStateHandle).
+     * Принимающая сторона читает значение через [resultFlow] по тому же ключу.
+     */
     fun sendResult(key: String, data: Any) {
-        this@JoyRouter.router.sendResult(key, data)
+        navController?.previousBackStackEntry?.savedStateHandle?.set(key, data)
+    }
+
+    /**
+     * Поток результатов для [key], приходящих в текущий экран через [sendResult].
+     */
+    @Suppress("UNCHECKED_CAST")
+    fun <T> resultFlow(key: String): Flow<T?> {
+        val handle = navController?.currentBackStackEntry?.savedStateHandle
+            ?: return flowOf(null)
+        return handle.getStateFlow(key, null as T?)
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun <A : Parcelable> get(): A {
-        return screensFlow.value.last().args as A
+        return requireNotNull(screensFlow.value.lastOrNull()).args as A
     }
 }

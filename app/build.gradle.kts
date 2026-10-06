@@ -65,11 +65,6 @@ android {
 }
 
 dependencies {
-    implementation("androidx.fragment:fragment-ktx:1.8.8")
-    implementation("androidx.fragment:fragment-compose:1.8.8")
-
-    implementation("com.github.terrakok:cicerone:7.1")
-
     implementation("com.google.dagger:dagger-android:2.56.2")
     implementation("com.google.dagger:dagger-android-support:2.56.2")
     kapt("com.google.dagger:dagger-compiler:2.56.2")
@@ -103,6 +98,7 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.coil.network)
     implementation(platform(libs.androidx.compose.bom))
+    implementation(libs.androidx.navigation.compose)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)

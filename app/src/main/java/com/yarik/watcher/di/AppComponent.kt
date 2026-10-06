@@ -11,21 +11,11 @@ import com.yarik.watcher.di.module.domain.DomainModule
 import com.yarik.watcher.di.module.localsource.LocalSourcesModule
 import com.yarik.watcher.di.module.localsource.PreferencesModule
 import com.yarik.watcher.di.module.location.LocationModule
-import com.yarik.watcher.di.module.navigation.NavigationBindModule
 import com.yarik.watcher.di.module.navigation.NavigationModule
 import com.yarik.watcher.di.module.network.CommonNetworkModule
 import com.yarik.watcher.di.module.network.WeatherNetworkModule
 import com.yarik.watcher.di.module.viewmodel.ViewModelModule
 import com.yarik.watcher.di.module.worker.WorkerModule
-import com.yarik.watcher.features.start.StartFragment
-import com.yarik.watcher.features.home.HomeFragment
-import com.yarik.watcher.features.calendar.CalendarFragment
-import com.yarik.watcher.features.layoutsandbox.LayoutSandboxFragment
-import com.yarik.watcher.features.minesweeper.MinesweeperFragment
-import com.yarik.watcher.features.minesweeper.gamefield.MinesweeperFieldFragment
-import com.yarik.watcher.features.minesweeper.settings.MinesweeperSettingsFragment
-import com.yarik.watcher.features.rendernode.RenderNodeFragment
-import com.yarik.watcher.features.subcomposelayoutsandbox.SubcomposeLayoutSandboxFragment
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -36,7 +26,6 @@ import javax.inject.Singleton
         CommonModule::class,
         DateTimeModule::class,
         NavigationModule::class,
-        NavigationBindModule::class,
         LocalSourcesModule::class,
         PreferencesModule::class,
         WeatherNetworkModule::class,
@@ -52,15 +41,6 @@ import javax.inject.Singleton
 interface AppComponent {
     fun inject(app: WatcherApplication)
     fun inject(activity: MainActivity)
-    fun inject(fragment: StartFragment)
-    fun inject(fragment: HomeFragment)
-    fun inject(fragment: CalendarFragment)
-    fun inject(fragment: RenderNodeFragment)
-    fun inject(fragment: LayoutSandboxFragment)
-    fun inject(fragment: SubcomposeLayoutSandboxFragment)
-    fun inject(fragment: MinesweeperFragment)
-    fun inject(fragment: MinesweeperFieldFragment)
-    fun inject(fragment: MinesweeperSettingsFragment)
 
     @Component.Builder
     interface Builder {
