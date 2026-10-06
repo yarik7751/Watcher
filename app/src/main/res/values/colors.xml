@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <color name="widget_red_1">#FD251E</color>
+    <color name="widget_red_2">#FE725C</color>
+    <color name="widget_red_accent">#FF4539</color>
+
+    <color name="widget_yellow_1">#F8AC08</color>
+    <color name="widget_yellow_2">#FFE139</color>
+    <color name="widget_yellow_accent">#FFE139</color>
+
+    <color name="widget_green_1">#16B566</color>
+    <color name="widget_green_2">#39FFC7</color>
+    <color name="widget_green_accent">#39FFC7</color>
+
+    <color name="widget_pink_1">#FD1E99</color>
+    <color name="widget_pink_2">#FF45C7</color>
+    <color name="widget_pink_accent">#FF39C4</color>
+
+    <color name="widget_blue_1">#1E7FFD</color>
+    <color name="widget_blue_2">#39A6FF</color>
+    <color name="widget_blue_accent">#39A6FF</color>
+</resources>

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "463559930192",
+    "project_id": "joywidget",
+    "storage_bucket": "joywidget.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:463559930192:android:68f6122fbb8fa2ae54bc55",
+        "android_client_info": {
+          "package_name": "com.yarik.watcher"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNjnqwZqz4wVaKpuquEzrW6VzxsPzwflo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

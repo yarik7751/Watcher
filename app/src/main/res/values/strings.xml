@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Watcher</string>
+    <string name="app_widget_description">Widget for test</string>
+    <string name="app_date_time_widget_description">Date, time, calendar, weather</string>
+    <string name="app_circle_date_time_widget_description">Date, time, weather</string>
+    <string name="clock_calendar_widget_description">Analog clock and calendar</string>
+
+    <string name="circle_widget_title">Circle widget</string>
+    <string name="circle_widget_color_title">Color</string>
+    <string name="circle_widget_date_format_title">Date format</string>
+    <string name="circle_widget_save_action">Save</string>
+    <string name="circle_widget_install_action">Install</string>
+
+    <string name="rectangle_widget_title">Rectangle widget</string>
+    <string name="rectangle_widget_color_title">Color</string>
+    <string name="rectangle_widget_date_format_title">Date format</string>
+    <string name="rectangle_widget_save_action">Save</string>
+    <string name="rectangle_widget_install_action">Install</string>
+
+    <string name="clock_calendar_widget_title">Clock calendar widget</string>
+    <string name="clock_calendar_widget_color_title">Color</string>
+    <string name="clock_calendar_widget_first_week_day_title">First day in week</string>
+    <string name="clock_calendar_widget_first_week_day_monday">Monday</string>
+    <string name="clock_calendar_widget_first_week_day_sunday">Sunday</string>
+    <string name="clock_calendar_widget_save_action">Save</string>
+    <string name="clock_calendar_widget_install_action">Install</string>
+
+    <string name="widget_color_green">Green</string>
+    <string name="widget_color_red">Red</string>
+    <string name="widget_color_blue">Blue</string>
+    <string name="widget_color_yellow">Yellow</string>
+    <string name="widget_color_pink">Pink</string>
+    <string name="widget_color_light_gray">Light gray</string>
+    <string name="widget_color_black">Black</string>
+    <string name="widget_date_format_american">American (MM/dd/yyyy)</string>
+    <string name="widget_date_format_european">European (dd.MM.yyyy)</string>
+    <string name="widget_date_format_standard">Standard (yyyy-MM-dd)</string>
+</resources>
