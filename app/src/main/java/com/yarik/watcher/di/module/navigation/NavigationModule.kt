@@ -1,10 +1,13 @@
 package com.yarik.watcher.di.module.navigation
 
-import com.yarik.watcher.navigation.router.CurrentArgs
-import com.yarik.watcher.navigation.router.JoyRouter
-import com.yarik.watcher.navigation.router.ScreensFlow
+import androidx.lifecycle.ViewModel
+import com.yarik.watcher.core.navigation.router.CurrentArgs
+import com.yarik.watcher.core.navigation.router.JoyRouter
+import com.yarik.watcher.core.navigation.router.ScreensFlow
+import com.yarik.watcher.core.ui.ViewModelFactory
 import dagger.Module
 import dagger.Provides
+import javax.inject.Provider
 import javax.inject.Singleton
 
 @Module
@@ -19,4 +22,10 @@ class NavigationModule {
 
     @Provides
     fun provideCurrentArgs(router: JoyRouter): CurrentArgs = router
+
+    @Provides
+    @Singleton
+    fun provideViewModelFactory(
+        creators: Map<Class<out ViewModel>, @JvmSuppressWildcards Provider<ViewModel>>,
+    ): ViewModelFactory = ViewModelFactory(creators)
 }

@@ -7,8 +7,9 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 import com.yarik.watcher.application.WatcherApplication
-import com.yarik.watcher.features.base.factory.ViewModelFactory
-import com.yarik.watcher.navigation.router.JoyRouter
+import com.yarik.watcher.core.navigation.ScreenContentProvider
+import com.yarik.watcher.core.navigation.router.JoyRouter
+import com.yarik.watcher.core.ui.ViewModelFactory
 import com.yarik.watcher.snackbar.flow.SnackBarManagerFlow
 import javax.inject.Inject
 
@@ -19,6 +20,9 @@ class MainActivity : AppCompatActivity() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
+
+    @Inject
+    lateinit var screenContentProviders: Map<String, @JvmSuppressWildcards ScreenContentProvider>
 
     @Inject
     lateinit var snackBarManagerFlow: SnackBarManagerFlow
@@ -34,6 +38,7 @@ class MainActivity : AppCompatActivity() {
             WatcherAppContent(
                 router = router,
                 viewModelFactory = viewModelFactory,
+                contentProviders = screenContentProviders,
                 snackBarManagerFlow = snackBarManagerFlow,
             )
         }

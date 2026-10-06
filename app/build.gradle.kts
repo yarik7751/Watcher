@@ -91,6 +91,19 @@ dependencies {
 
     implementation(project(":utils"))
 
+    implementation(project(":core:navigation"))
+    implementation(project(":core:ui"))
+    implementation(project(":feature:start:impl"))
+    implementation(project(":feature:home:impl"))
+    implementation(project(":feature:calendar:impl"))
+    implementation(project(":feature:rendernode:impl"))
+    implementation(project(":feature:layoutsandbox:impl"))
+    implementation(project(":feature:subcomposelayoutsandbox:impl"))
+    implementation(project(":feature:minesweeper:impl"))
+    implementation(project(":feature:minesweeper-gamefield:impl"))
+    implementation(project(":feature:minesweeper-settings:impl"))
+    implementation(project(":feature:testgetuserdata"))
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
