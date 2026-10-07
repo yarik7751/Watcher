@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.yarik.watcher.utils.textorresource.getString
 
 private val SelectedColor = Color(0xFF4CAF50)
 private val UnselectedColor = Color(0xFF2196F3)
@@ -28,7 +29,7 @@ fun ActionButton(
         onClick = onClick,
     ) {
         Text(
-            text = model.title,
+            text = model.title.getString(),
             fontSize = 16.sp,
         )
     }

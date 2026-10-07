@@ -1,5 +1,6 @@
 package com.yarik.watcher.feature.minesweepergamefield.impl
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import com.yarik.watcher.core.navigation.ScreenContentProvider
 import com.yarik.watcher.core.ui.ScreenKey
@@ -19,7 +20,7 @@ class MinesweeperFieldModule {
     fun provideGameEngine(): GameEngine = GameEngine()
 
     @Provides
-    fun provideCellMapper(): HexCellUiModelMapper = HexCellUiModelMapper()
+    fun provideCellMapper(context: Context): HexCellUiModelMapper = HexCellUiModelMapper(context)
 
     @Provides
     fun provideFieldMapper(): MinesweeperFieldUiModelMapper = MinesweeperFieldUiModelMapper()

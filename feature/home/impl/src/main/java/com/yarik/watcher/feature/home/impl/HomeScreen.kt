@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -47,7 +48,7 @@ fun HomeScreen(
         ) {
             Text(
                 modifier = Modifier,
-                text = "Home",
+                text = stringResource(R.string.home_title),
                 fontSize = 28.sp
             )
 
@@ -58,7 +59,7 @@ fun HomeScreen(
                     viewModel.onSimpleCounterClick()
                 }
             ) {
-                Text(text = "SimpleCounter")
+                Text(text = stringResource(R.string.home_button_simple_counter))
             }
 
             Button(
@@ -68,7 +69,7 @@ fun HomeScreen(
                     viewModel.onSimpleAtomicCounterClick()
                 }
             ) {
-                Text(text = "SimpleAtomicCounter")
+                Text(text = stringResource(R.string.home_button_simple_atomic_counter))
             }
 
             Button(
@@ -78,7 +79,7 @@ fun HomeScreen(
                     viewModel.onReorderingClick()
                 }
             ) {
-                Text(text = "Reordering")
+                Text(text = stringResource(R.string.home_button_reordering))
             }
 
             Button(
@@ -88,7 +89,7 @@ fun HomeScreen(
                     viewModel.onBufferExampleClick()
                 }
             ) {
-                Text(text = "Buffer(wait, notify)")
+                Text(text = stringResource(R.string.home_button_buffer))
             }
 
             Button(
@@ -98,7 +99,7 @@ fun HomeScreen(
                     viewModel.onSemaphoreClick()
                 }
             ) {
-                Text(text = "Semaphore")
+                Text(text = stringResource(R.string.home_button_semaphore))
             }
 
             Button(
@@ -107,7 +108,7 @@ fun HomeScreen(
                     router.navigateTo(CalendarJoyScreen)
                 }
             ) {
-                Text(text = "Calendar widget")
+                Text(text = stringResource(R.string.home_button_calendar))
             }
 
             Button(
@@ -116,7 +117,7 @@ fun HomeScreen(
                     router.navigateTo(RenderNodeJoyScreen)
                 }
             ) {
-                Text(text = "RenderNode")
+                Text(text = stringResource(R.string.home_button_rendernode))
             }
 
             Button(
@@ -125,7 +126,7 @@ fun HomeScreen(
                     router.navigateTo(LayoutSandboxJoyScreen)
                 }
             ) {
-                Text(text = "Layout Sandbox")
+                Text(text = stringResource(R.string.home_button_layout_sandbox))
             }
 
             Button(
@@ -134,7 +135,7 @@ fun HomeScreen(
                     router.navigateTo(SubcomposeLayoutSandboxJoyScreen)
                 }
             ) {
-                Text(text = "SubcomposeLayout Sandbox")
+                Text(text = stringResource(R.string.home_button_subcompose_sandbox))
             }
 
             Button(
@@ -145,7 +146,7 @@ fun HomeScreen(
                     )
                 }
             ) {
-                Text(text = "Test get user data")
+                Text(text = stringResource(R.string.home_button_test_user_data))
             }
 
             Button(
@@ -154,7 +155,7 @@ fun HomeScreen(
                     router.navigateTo(MinesweeperJoyScreen)
                 }
             ) {
-                Text(text = "Minesweeper")
+                Text(text = stringResource(R.string.home_button_minesweeper))
             }
         }
     }

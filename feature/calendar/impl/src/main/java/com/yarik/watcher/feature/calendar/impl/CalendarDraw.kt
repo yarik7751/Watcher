@@ -164,10 +164,14 @@ object CalendarDraw {
         textPaint.typeface = Typeface.DEFAULT_BOLD
         textPaint.letterSpacing = 0.08f
         val headerTop = titleTop + titleSize + U_TITLE_TO_HEADER * u
-        val letters = CalendarMath.weekdayLetters(weekStart)
+        val lettersMondayFirst = context.resources
+            .getStringArray(R.array.calendar_weekday_letters_monday_first)
+            .toList()
+        val letters = CalendarMath.weekdayLetters(weekStart, lettersMondayFirst)
         val cellWidth = colWidth / 7f
         letters.forEachIndexed { i, letter ->
-            val weekend = letter == "СБ" || letter == "ВС"
+            // последние две колонки — всегда выходные, независимо от первого дня недели
+            val weekend = i >= 5
             textPaint.color = if (weekend) Plain.WEEKEND_RED else Plain.TEXT_GRAY
             canvas.drawText(
                 letter,

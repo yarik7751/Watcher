@@ -1,5 +1,6 @@
 package com.yarik.watcher.feature.minesweepergamefield.impl
 
+import android.content.Context
 import androidx.compose.ui.graphics.Color
 import com.yarik.watcher.core.ui.DesignSystem
 import com.yarik.watcher.feature.minesweepergamefield.impl.game.model.cell.HexCell
@@ -17,7 +18,10 @@ import javax.inject.Inject
  * - Mined: закрытые — голубые, открытые чистые — зеленые,
  *   флажок — желтый, открытая мина — красная.
  */
-class HexCellUiModelMapper @Inject constructor() {
+class HexCellUiModelMapper @Inject constructor(context: Context) {
+
+    private val flagText = context.getString(R.string.minesweeper_cell_flag)
+    private val mineText = context.getString(R.string.minesweeper_cell_mine)
 
     fun map(field: MinesweeperField): List<HexCellUiModel> {
         return when (field) {
@@ -45,13 +49,13 @@ class HexCellUiModelMapper @Inject constructor() {
 
             HexVisibility.Flagged -> toUiModel(
                 backgroundColor = DesignSystem.Colors.minesweeperCellFlagged,
-                text = FLAG_TEXT,
+                text = flagText,
             )
 
             HexVisibility.Revealed -> when (type) {
                 HexCellType.Bomb -> toUiModel(
                     backgroundColor = DesignSystem.Colors.minesweeperCellMine,
-                    text = MINE_TEXT,
+                    text = mineText,
                 )
 
                 is HexCellType.ClearField -> toUiModel(
@@ -73,10 +77,5 @@ class HexCellUiModelMapper @Inject constructor() {
             text = text,
             textColor = DesignSystem.Colors.minesweeperCellText,
         )
-    }
-
-    private companion object {
-        const val FLAG_TEXT = "⚑"
-        const val MINE_TEXT = "✸"
     }
 }

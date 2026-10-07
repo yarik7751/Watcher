@@ -7,6 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.ui.ViewModelFactory
 import com.yarik.watcher.feature.minesweepergamefield.api.MinesweeperFieldJoyScreen
@@ -33,7 +34,7 @@ fun MinesweeperScreen(
                 router.navigateTo(MinesweeperFieldJoyScreen)
             }
         ) {
-            Text(text = "Start game")
+            Text(text = stringResource(R.string.minesweeper_start_game))
         }
     }
 }

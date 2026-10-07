@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rendernode_title">RenderNode</string>
+    <string name="rendernode_counter_text">Нажато: %1$d</string>
+    <string name="rendernode_counter_button">Нажать</string>
+    <string name="rendernode_demo_hint">контент записан один раз — крутим узел каждый кадр</string>
+    <string name="rendernode_demo_subtitle">записано 1 раз — только поворот</string>
+    <string name="rendernode_unsupported">RenderNode доступен только с Android 10 (API 29)</string>
+</resources>

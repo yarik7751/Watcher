@@ -6,6 +6,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.ui.ViewModelFactory
@@ -24,7 +25,7 @@ fun MinesweeperSettingsScreen(viewModelFactory: ViewModelFactory) {
         Text(
             modifier = Modifier
                 .align(Alignment.Center),
-            text = "Minesweeper Settings",
+            text = stringResource(R.string.minesweeper_settings_title),
             fontSize = 28.sp
         )
     }

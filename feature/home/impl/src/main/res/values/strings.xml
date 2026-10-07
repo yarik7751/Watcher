@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="home_title">Home</string>
+    <string name="home_button_simple_counter">SimpleCounter</string>
+    <string name="home_button_simple_atomic_counter">SimpleAtomicCounter</string>
+    <string name="home_button_reordering">Reordering</string>
+    <string name="home_button_buffer">Buffer(wait, notify)</string>
+    <string name="home_button_semaphore">Semaphore</string>
+    <string name="home_button_calendar">Calendar widget</string>
+    <string name="home_button_rendernode">RenderNode</string>
+    <string name="home_button_layout_sandbox">Layout Sandbox</string>
+    <string name="home_button_subcompose_sandbox">SubcomposeLayout Sandbox</string>
+    <string name="home_button_test_user_data">Test get user data</string>
+    <string name="home_button_minesweeper">Minesweeper</string>
+</resources>

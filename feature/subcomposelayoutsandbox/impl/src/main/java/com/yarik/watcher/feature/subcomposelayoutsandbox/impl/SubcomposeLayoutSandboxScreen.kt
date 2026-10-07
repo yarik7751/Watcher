@@ -42,14 +42,14 @@ fun SubcomposeLayoutSandboxScreen(viewModelFactory: ViewModelFactory) {
             LoadingIndicator(
                 modifier = Modifier
                     .size(200.dp),
-                text = TextOrResource.Text("Loading ..."),
+                text = TextOrResource.Resource(R.string.subcompose_loading),
             )
 
             LoadingIndicator(
                 modifier = Modifier
                     .padding(top = 16.dp)
                     .size(48.dp),
-                text = TextOrResource.Text("Loading ..."),
+                text = TextOrResource.Resource(R.string.subcompose_loading),
             )
         }
     }

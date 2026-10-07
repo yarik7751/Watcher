@@ -11,6 +11,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -46,7 +47,7 @@ fun StartScreen(
         Text(
             modifier = Modifier
                 .align(Alignment.Center),
-            text = "Start screen",
+            text = stringResource(R.string.start_screen_title),
             fontSize = 28.sp
         )
     }

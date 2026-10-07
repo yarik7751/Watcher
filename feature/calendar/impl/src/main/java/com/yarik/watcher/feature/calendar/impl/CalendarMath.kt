@@ -8,14 +8,15 @@ import java.util.Locale
 /**
  * Чистые вычисления для календарного виджета.
  * Без Android-зависимостей — используются и Canvas-рендером, и тестами.
+ *
+ * Буквы дней недели приходят из string-array ресурсов (порядок: с понедельника)
+ * и передаются параметром — этот объект остается чисто JVM.
  */
 object CalendarMath {
 
     private val RU = Locale("ru")
     private val MONTH_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("LLLL", RU)
     private val DAY_OF_WEEK_FORMATTER: DateTimeFormatter = DateTimeFormatter.ofPattern("EEEE", RU)
-
-    private val WEEKDAY_LETTERS_MONDAY_FIRST = listOf("ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ", "ВС")
 
     fun isWeekend(date: LocalDate): Boolean =
         date.dayOfWeek == DayOfWeek.SATURDAY || date.dayOfWeek == DayOfWeek.SUNDAY
@@ -32,9 +33,9 @@ object CalendarMath {
         date.format(DAY_OF_WEEK_FORMATTER).replaceFirstChar { it.uppercase(RU) }
 
     /** Заголовки колонок в порядке, заданном первым днём недели. */
-    fun weekdayLetters(weekStart: DayOfWeek): List<String> {
+    fun weekdayLetters(weekStart: DayOfWeek, mondayFirstLetters: List<String>): List<String> {
         val shift = normalizedShift(weekStart)
-        return (0..6).map { WEEKDAY_LETTERS_MONDAY_FIRST[(it + shift) % 7] }
+        return (0..6).map { mondayFirstLetters[(it + shift) % 7] }
     }
 
     /**

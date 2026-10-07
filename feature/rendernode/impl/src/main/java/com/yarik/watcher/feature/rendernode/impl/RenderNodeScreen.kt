@@ -1,5 +1,6 @@
 package com.yarik.watcher.feature.rendernode.impl
 
+import android.content.Context
 import android.graphics.LinearGradient
 import android.graphics.Paint
 import android.graphics.RenderNode
@@ -32,7 +33,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.drawscope.drawIntoCanvas
 import androidx.compose.ui.graphics.nativeCanvas
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -58,7 +61,7 @@ fun RenderNodeScreen() {
             verticalArrangement = Arrangement.Center,
         ) {
             Text(
-                text = "RenderNode",
+                text = stringResource(R.string.rendernode_title),
                 fontSize = 28.sp,
             )
 
@@ -76,9 +79,9 @@ fun Counter() {
     var count by remember { mutableStateOf(0) }      // ← значение, за которым следят
 
     Column {
-        Text("Нажато: $count")                       // ← ЗДЕСЬ значение читают
+        Text(stringResource(R.string.rendernode_counter_text, count)) // ← ЗДЕСЬ значение читают
         Button(onClick = { count++ }) {              // ← ЗДЕСЬ значение меняют
-            Text("Нажать")
+            Text(stringResource(R.string.rendernode_counter_button))
         }
     }
 }
@@ -92,10 +95,11 @@ fun Counter() {
 @Composable
 private fun RenderNodeDemo() {
     if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-        Text("RenderNode доступен только с Android 10 (API 29)")
+        Text(stringResource(R.string.rendernode_unsupported))
         return
     }
 
+    val context = LocalContext.current
     val density = LocalDensity.current
     var nodeSize by remember { mutableStateOf(IntSize.Zero) }
     val renderNode = remember { RenderNode("demo") }
@@ -107,6 +111,7 @@ private fun RenderNodeDemo() {
         renderNode.setPosition(0, 0, nodeSize.width, nodeSize.height)
         val canvas = renderNode.beginRecording()
         drawNodeContent(
+            context = context,
             canvas = canvas,
             width = nodeSize.width.toFloat(),
             height = nodeSize.height.toFloat(),
@@ -126,7 +131,7 @@ private fun RenderNodeDemo() {
     }
 
     Text(
-        text = "контент записан один раз — крутим узел каждый кадр",
+        text = stringResource(R.string.rendernode_demo_hint),
         fontSize = 12.sp,
         modifier = Modifier.padding(bottom = 8.dp),
     )
@@ -152,6 +157,7 @@ private fun RenderNodeDemo() {
 
 /** Содержимое узла: карточка с градиентом, круг и подписи. Рисуется один раз. */
 private fun drawNodeContent(
+    context: Context,
     canvas: android.graphics.Canvas,
     width: Float,
     height: Float,
@@ -178,8 +184,11 @@ private fun drawNodeContent(
     paint.textAlign = Paint.Align.CENTER
     paint.typeface = android.graphics.Typeface.DEFAULT_BOLD
     paint.textSize = titlePx
-    canvas.drawText("RenderNode", width / 2f, height * 0.72f, paint)
+    canvas.drawText(context.getString(R.string.rendernode_title), width / 2f, height * 0.72f, paint)
     paint.typeface = android.graphics.Typeface.DEFAULT
     paint.textSize = subtitlePx
-    canvas.drawText("записано 1 раз — только поворот", width / 2f, height * 0.85f, paint)
+    canvas.drawText(
+        context.getString(R.string.rendernode_demo_subtitle),
+        width / 2f, height * 0.85f, paint,
+    )
 }

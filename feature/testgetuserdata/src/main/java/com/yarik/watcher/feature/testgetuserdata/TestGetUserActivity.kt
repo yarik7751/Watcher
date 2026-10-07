@@ -17,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.yarik.watcher.feature.testgetuserdata.data.UserRepository
 import com.yarik.watcher.feature.testgetuserdata.datasource.BestUser
@@ -56,7 +57,7 @@ class TestGetUserActivity : ComponentActivity() {
                                 userRepository?.reloadData()
                             }
                         ) {
-                            Text(text = "UPLOAD DATA")
+                            Text(text = stringResource(R.string.test_user_data_upload))
                         }
                         if (!data.isEmpty()) {
                             Text(
