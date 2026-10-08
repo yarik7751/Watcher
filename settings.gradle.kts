@@ -20,6 +20,7 @@ include(":app")
 include(":utils")
 include(":core:navigation")
 include(":core:ui")
+include(":core:database")
 
 include(":feature:start:api")
 include(":feature:start:impl")
