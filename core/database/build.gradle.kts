@@ -21,7 +21,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.androidx.room.runtime)
+    // api: entity-классы попадают в сигнатуры репозитория — должны быть видны потребителям модуля
+    api(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     // Annotation processor через kapt, как и в остальных модулях проекта
     kapt(libs.androidx.room.compiler)

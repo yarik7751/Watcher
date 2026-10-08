@@ -50,3 +50,6 @@ include(":feature:minesweeper-settings:api")
 include(":feature:minesweeper-settings:impl")
 
 include(":feature:testgetuserdata")
+
+include(":feature:masterpro:api")
+include(":feature:masterpro:impl")

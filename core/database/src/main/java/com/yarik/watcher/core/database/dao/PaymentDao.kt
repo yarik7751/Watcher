@@ -17,8 +17,16 @@ interface PaymentDao {
     @Query("SELECT COALESCE(SUM(amount), 0) FROM payments WHERE jobId = :jobId")
     fun observeSumByJob(jobId: Long): Flow<Long>
 
+    /** Выручка за период: Σ платежей с paidAt в [from, to) */
+    @Query("SELECT COALESCE(SUM(amount), 0) FROM payments WHERE paidAt >= :from AND paidAt < :to")
+    fun observeSumInPeriod(from: Long, to: Long): Flow<Long>
+
     @Query("SELECT COALESCE(SUM(amount), 0) FROM payments WHERE jobId = :jobId")
     suspend fun sumByJob(jobId: Long): Long
+
+    /** Полный снимок таблицы для экспорта CSV */
+    @Query("SELECT * FROM payments ORDER BY id")
+    suspend fun getAll(): List<PaymentEntity>
 
     @Insert
     suspend fun insert(payment: PaymentEntity): Long
