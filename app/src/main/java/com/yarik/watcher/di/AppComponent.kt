@@ -3,6 +3,7 @@ package com.yarik.watcher.di
 import android.content.Context
 import com.yarik.watcher.MainActivity
 import com.yarik.watcher.application.WatcherApplication
+import com.yarik.watcher.core.database.di.DatabaseModule
 import com.yarik.watcher.di.module.CommonModule
 import com.yarik.watcher.di.module.DateTimeModule
 import com.yarik.watcher.di.module.SnackBarModule
@@ -17,6 +18,7 @@ import com.yarik.watcher.di.module.worker.WorkerModule
 import com.yarik.watcher.feature.calendar.impl.CalendarModule
 import com.yarik.watcher.feature.home.impl.HomeModule
 import com.yarik.watcher.feature.layoutsandbox.impl.LayoutSandboxModule
+import com.yarik.watcher.feature.masterpro.impl.MasterProModule
 import com.yarik.watcher.feature.minesweeper.impl.MinesweeperModule
 import com.yarik.watcher.feature.minesweepergamefield.impl.MinesweeperFieldModule
 import com.yarik.watcher.feature.minesweepersettings.impl.MinesweeperSettingsModule
@@ -42,6 +44,8 @@ import javax.inject.Singleton
         MinesweeperModule::class,
         MinesweeperFieldModule::class,
         MinesweeperSettingsModule::class,
+        MasterProModule::class,
+        DatabaseModule::class,
         LocalSourcesModule::class,
         PreferencesModule::class,
         WeatherNetworkModule::class,

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<paths>
+    <!-- Временные файлы для съёмки фото (МастерPRO) -->
+    <cache-path
+        name="captures"
+        path="captures/" />
+    <!-- Сжатые фото до/после в app-private storage -->
+    <files-path
+        name="photos"
+        path="photos/" />
+</paths>

@@ -21,6 +21,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.ui.ViewModelFactory
 import com.yarik.watcher.feature.calendar.api.CalendarJoyScreen
 import com.yarik.watcher.feature.layoutsandbox.api.LayoutSandboxJoyScreen
+import com.yarik.watcher.feature.masterpro.api.ClientsJoyScreen
+import com.yarik.watcher.feature.masterpro.api.JobsJoyScreen
+import com.yarik.watcher.feature.masterpro.api.PriceJoyScreen
+import com.yarik.watcher.feature.masterpro.api.SettingsJoyScreen
+import com.yarik.watcher.feature.masterpro.api.StatsJoyScreen
 import com.yarik.watcher.feature.minesweeper.api.MinesweeperJoyScreen
 import com.yarik.watcher.feature.rendernode.api.RenderNodeJoyScreen
 import com.yarik.watcher.feature.subcomposelayoutsandbox.api.SubcomposeLayoutSandboxJoyScreen
@@ -51,6 +56,56 @@ fun HomeScreen(
                 text = stringResource(R.string.home_title),
                 fontSize = 28.sp
             )
+
+            Button(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                onClick = {
+                    router.navigateTo(JobsJoyScreen)
+                }
+            ) {
+                Text(text = stringResource(R.string.home_button_masterpro))
+            }
+
+            Button(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                onClick = {
+                    router.navigateTo(ClientsJoyScreen)
+                }
+            ) {
+                Text(text = stringResource(R.string.home_button_masterpro_clients))
+            }
+
+            Button(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                onClick = {
+                    router.navigateTo(StatsJoyScreen)
+                }
+            ) {
+                Text(text = stringResource(R.string.home_button_masterpro_stats))
+            }
+
+            Button(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                onClick = {
+                    router.navigateTo(PriceJoyScreen)
+                }
+            ) {
+                Text(text = stringResource(R.string.home_button_masterpro_price))
+            }
+
+            Button(
+                modifier = Modifier
+                    .padding(top = 8.dp),
+                onClick = {
+                    router.navigateTo(SettingsJoyScreen)
+                }
+            ) {
+                Text(text = stringResource(R.string.home_button_masterpro_settings))
+            }
 
             Button(
                 modifier = Modifier

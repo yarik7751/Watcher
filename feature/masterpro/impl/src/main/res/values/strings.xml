@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="jobs_title">МастерPRO — Заявки</string>
+    <string name="jobs_tab_new">Новые</string>
+    <string name="jobs_tab_in_progress">В работе</string>
+    <string name="jobs_tab_await_payment">Жду оплату</string>
+    <string name="jobs_tab_done">Завершённые</string>
+    <string name="jobs_fab_new_job">+ Заявка</string>
+    <string name="jobs_create_dialog_title">Новая заявка</string>
+    <string name="jobs_create_client_label">Клиент</string>
+    <string name="jobs_create_client_new">+ Новый клиент</string>
+    <string name="jobs_create_client_name_hint">Имя нового клиента</string>
+    <string name="jobs_create_title_hint">Что делать (например, «Замена смесителя»)</string>
+    <string name="jobs_create_address_hint">Адрес (необязательно)</string>
+    <string name="jobs_create_confirm">Создать</string>
+    <string name="jobs_create_cancel">Отмена</string>
+    <string name="jobs_empty">Заявок нет</string>
+    <string name="jobs_money_format">%1$s ₽</string>
+    <string name="jobs_debt_label">Долг: %1$s</string>
+    <string name="jobs_error_empty_title">Укажите, что делать</string>
+    <string name="jobs_error_empty_name">Имя клиента не может быть пустым</string>
+    <string name="jobs_error_no_client">Выберите или создайте клиента</string>
+    <string name="jobs_error_unknown">Не удалось сохранить, попробуйте ещё раз</string>
+
+    <string name="jobcard_loading">Загрузка…</string>
+    <string name="jobcard_not_found">Заявка не найдена</string>
+    <string name="jobcard_back">← Назад</string>
+    <string name="jobcard_client_label">Клиент: %1$s</string>
+    <string name="jobcard_edit_data">Редактировать</string>
+    <string name="jobcard_edit_dialog_title">Данные заявки</string>
+    <string name="jobcard_field_notes_hint">Заметки</string>
+    <string name="jobcard_plan_date_label">Плановая дата</string>
+    <string name="jobcard_plan_date_empty">Не задана</string>
+    <string name="jobcard_plan_date_pick">Выбрать дату</string>
+    <string name="jobcard_plan_date_clear">Убрать</string>
+    <string name="jobcard_save">Сохранить</string>
+    <string name="jobcard_cancel">Отмена</string>
+    <string name="jobcard_status_label">Статус</string>
+
+    <string name="jobcard_section_estimate">Смета</string>
+    <string name="jobcard_add_item">+ Позиция</string>
+    <string name="jobcard_item_dialog_title">Позиция сметы</string>
+    <string name="jobcard_item_price_hint">Цена за единицу, ₽</string>
+    <string name="jobcard_item_qty_hint">Кол-во</string>
+    <string name="jobcard_item_from_price">Из прайса</string>
+    <string name="jobcard_item_manual">Вручную</string>
+    <string name="jobcard_total">Итого: %1$s</string>
+
+    <string name="jobcard_section_photos_before">Фото до</string>
+    <string name="jobcard_section_photos_after">Фото после</string>
+    <string name="jobcard_take_photo">Камера</string>
+    <string name="jobcard_pick_photo">Галерея</string>
+    <string name="jobcard_photo_delete">Удалить фото</string>
+
+    <string name="jobcard_section_payments">Оплаты</string>
+    <string name="jobcard_add_payment">+ Оплата</string>
+    <string name="jobcard_payment_dialog_title">Оплата</string>
+    <string name="jobcard_payment_amount_hint">Сумма, ₽</string>
+    <string name="jobcard_payment_method_label">Способ</string>
+    <string name="jobcard_payment_cash">Наличные</string>
+    <string name="jobcard_payment_card">Карта</string>
+    <string name="jobcard_payment_transfer">Перевод</string>
+    <string name="jobcard_paid">Оплачено: %1$s</string>
+    <string name="jobcard_debt">Долг: %1$s</string>
+    <string name="jobcard_debt_free">Оплачено полностью</string>
+
+    <string name="jobcard_finish">Завершить</string>
+    <string name="jobcard_finished_at">Завершена: %1$s</string>
+
+    <string name="jobcard_error_empty_title">Укажите, что делать</string>
+    <string name="jobcard_error_empty_item_title">Введите название позиции</string>
+    <string name="jobcard_error_qty">Количество должно быть больше нуля</string>
+    <string name="jobcard_error_price">Цена не может быть отрицательной</string>
+    <string name="jobcard_error_amount">Введите сумму больше нуля</string>
+    <string name="jobcard_error_amount_exceeds">Сумма больше остатка долга</string>
+    <string name="jobcard_error_photo">Не удалось обработать фото</string>
+    <string name="jobcard_error_unknown">Не удалось сохранить, попробуйте ещё раз</string>
+
+    <string name="clients_title">МастерPRO — Клиенты</string>
+    <string name="clients_search_hint">Поиск: имя, телефон, адрес</string>
+    <string name="clients_fab_new_client">+ Клиент</string>
+    <string name="clients_dialog_new_title">Новый клиент</string>
+    <string name="clients_dialog_edit_title">Редактировать клиента</string>
+    <string name="clients_field_name_hint">Имя *</string>
+    <string name="clients_field_phone_hint">Телефон</string>
+    <string name="clients_field_address_hint">Адрес</string>
+    <string name="clients_field_notes_hint">Заметки</string>
+    <string name="clients_empty">Клиентов нет</string>
+    <string name="clients_nothing_found">Никого не нашли</string>
+    <string name="clients_debt_badge">Долг: %1$s</string>
+    <string name="clients_error_empty_name">Имя клиента не может быть пустым</string>
+    <string name="clients_error_unknown">Не удалось сохранить, попробуйте ещё раз</string>
+
+    <string name="clientcard_loading">Загрузка…</string>
+    <string name="clientcard_not_found">Клиент не найден</string>
+    <string name="clientcard_back">← Назад</string>
+    <string name="clientcard_edit">Редактировать</string>
+    <string name="clientcard_delete">Удалить клиента</string>
+    <string name="clientcard_delete_confirm">Удалить клиента без заявок? Действие необратимо.</string>
+    <string name="clientcard_delete_yes">Удалить</string>
+    <string name="clientcard_call">Позвонить</string>
+    <string name="clientcard_whatsapp">WhatsApp</string>
+    <string name="clientcard_no_phone">Телефон не указан</string>
+    <string name="clientcard_debt">Общий долг: %1$s</string>
+    <string name="clientcard_debt_free">Долгов нет</string>
+    <string name="clientcard_section_history">История заявок</string>
+    <string name="clientcard_history_empty">Заявок нет</string>
+    <string name="clientcard_phone_label">Телефон: %1$s</string>
+    <string name="clientcard_address_label">Адрес: %1$s</string>
+    <string name="clientcard_whatsapp_text">Здравствуйте, %1$s!</string>
+    <string name="clientcard_error_has_jobs">Нельзя удалить клиента с заявками</string>
+    <string name="clientcard_error_unknown">Не удалось выполнить действие</string>
+
+    <string name="stats_title">МастерPRO — Статистика</string>
+    <string name="stats_period_month">Месяц</string>
+    <string name="stats_period_year">Год</string>
+    <string name="stats_revenue">Выручка (получено)</string>
+    <string name="stats_finished_jobs">Завершено заявок</string>
+    <string name="stats_average_check">Средний чек</string>
+    <string name="stats_no_data">Пока нет данных за период</string>
+    <string name="stats_section_debtors">Должники</string>
+    <string name="stats_debtors_empty">Должников нет</string>
+
+    <string name="price_title">МастерPRO — Прайс</string>
+    <string name="price_fab_new_item">+ Работа</string>
+    <string name="price_dialog_new_title">Новая работа</string>
+    <string name="price_dialog_edit_title">Редактировать работу</string>
+    <string name="price_field_title_hint">Название работы</string>
+    <string name="price_field_price_hint">Цена, ₽</string>
+    <string name="price_empty">Прайс пуст — добавьте типовые работы</string>
+    <string name="price_error_empty_title">Введите название работы</string>
+    <string name="price_error_price">Цена не может быть отрицательной</string>
+    <string name="price_error_invalid_price">Некорректная цена</string>
+    <string name="price_error_unknown">Не удалось сохранить, попробуйте ещё раз</string>
+
+    <string name="settings_title">МастерPRO — Настройки</string>
+    <string name="settings_master_name_hint">Ваше имя (подпись в сообщениях)</string>
+    <string name="settings_template_hint">Шаблон сообщения (%1$s — имя клиента, %2$s — ваше имя)</string>
+    <string name="settings_template_default">Здравствуйте, %1$s! Это %2$s.</string>
+    <string name="settings_save">Сохранить</string>
+    <string name="settings_saved">Сохранено</string>
+    <string name="settings_export">Экспорт базы (CSV в Загрузки)</string>
+    <string name="settings_exporting">Экспортируем…</string>
+    <string name="settings_export_done">Экспортировано файлов: %1$d (Загрузки/MasterPRO)</string>
+    <string name="settings_export_failed">Экспорт не удался</string>
+</resources>

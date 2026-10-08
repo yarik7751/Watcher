@@ -30,6 +30,7 @@ dependencies {
     implementation(project(":core:navigation"))
     implementation(project(":core:ui"))
     implementation(project(":feature:calendar:api"))
+    implementation(project(":feature:masterpro:api"))
     implementation(project(":feature:rendernode:api"))
     implementation(project(":feature:layoutsandbox:api"))
     implementation(project(":feature:subcomposelayoutsandbox:api"))

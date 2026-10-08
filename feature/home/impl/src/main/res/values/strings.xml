@@ -12,4 +12,9 @@
     <string name="home_button_subcompose_sandbox">SubcomposeLayout Sandbox</string>
     <string name="home_button_test_user_data">Test get user data</string>
     <string name="home_button_minesweeper">Minesweeper</string>
+    <string name="home_button_masterpro">МастерPRO</string>
+    <string name="home_button_masterpro_clients">МастерPRO — Клиенты</string>
+    <string name="home_button_masterpro_stats">МастерPRO — Статистика</string>
+    <string name="home_button_masterpro_price">МастерPRO — Прайс</string>
+    <string name="home_button_masterpro_settings">МастерPRO — Настройки</string>
 </resources>

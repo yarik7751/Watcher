@@ -91,6 +91,9 @@ dependencies {
 
     implementation(project(":utils"))
 
+    implementation(project(":core:database"))
+    implementation(project(":feature:masterpro:impl"))
+
     implementation(project(":core:navigation"))
     implementation(project(":core:ui"))
     implementation(project(":feature:start:impl"))
