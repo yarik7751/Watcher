@@ -143,4 +143,8 @@
     <string name="settings_exporting">Экспортируем…</string>
     <string name="settings_export_done">Экспортировано файлов: %1$d (Загрузки/MasterPRO)</string>
     <string name="settings_export_failed">Экспорт не удался</string>
+
+    <string name="notif_channel_name">Напоминания о заявках</string>
+    <string name="notif_channel_desc">Напоминания о запланированных визитах</string>
+    <string name="notif_reminder_title">Запланированный визит</string>
 </resources>

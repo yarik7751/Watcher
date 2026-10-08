@@ -21,6 +21,7 @@ import com.yarik.watcher.core.database.entity.PhotoKind
 import com.yarik.watcher.core.database.entity.PriceItemEntity
 import com.yarik.watcher.feature.masterpro.impl.data.model.JobDetails
 import com.yarik.watcher.feature.masterpro.impl.data.model.PeriodStats
+import com.yarik.watcher.feature.masterpro.impl.notifications.JobReminderScheduler
 import javax.inject.Inject
 import javax.inject.Singleton
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -51,6 +52,7 @@ class MasterProRepository @Inject constructor(
     private val jobItemDao: JobItemDao,
     private val paymentDao: PaymentDao,
     private val jobPhotoDao: JobPhotoDao,
+    private val reminderScheduler: JobReminderScheduler,
 ) {
 
     // region Клиенты
@@ -185,7 +187,7 @@ class MasterProRepository @Inject constructor(
             return Result.failure(IllegalArgumentException("empty title"))
         }
         return runCatching {
-            jobDao.insert(
+            val jobId = jobDao.insert(
                 JobEntity(
                     clientId = clientId,
                     title = trimmedTitle,
@@ -194,6 +196,8 @@ class MasterProRepository @Inject constructor(
                     notes = notes.trim(),
                 ),
             )
+            reminderScheduler.schedule(jobId, scheduledAt)
+            jobId
         }
     }
 
@@ -201,7 +205,16 @@ class MasterProRepository @Inject constructor(
         if (job.title.isBlank()) {
             return Result.failure(IllegalArgumentException("empty title"))
         }
-        return runCatching { jobDao.update(job.copy(title = job.title.trim())) }
+        return runCatching {
+            val normalized = job.copy(title = job.title.trim())
+            jobDao.update(normalized)
+            // Дата сдвинулась/снялась — REPLACE; завершённая заявка напоминать не должна
+            if (normalized.status == JobStatus.DONE) {
+                reminderScheduler.cancel(normalized.id)
+            } else {
+                reminderScheduler.schedule(normalized.id, normalized.scheduledAt)
+            }
+        }
     }
 
     /** «Завершить»: DONE + finishedAt у заявки, lastVisitAt у клиента — одна транзакция */
@@ -214,6 +227,7 @@ class MasterProRepository @Inject constructor(
             val client = clientDao.getById(job.clientId) ?: return@withTransaction
             clientDao.update(client.copy(lastVisitAt = finishedAt))
         }
+        reminderScheduler.cancel(jobId)
     }
 
     // endregion

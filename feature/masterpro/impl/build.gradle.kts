@@ -33,6 +33,7 @@ dependencies {
 
     // withTransaction для мультитабличных транзакций репозитория
     implementation(libs.androidx.room.ktx)
+    implementation("androidx.work:work-runtime-ktx:2.11.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.2")
 
     implementation(platform(libs.androidx.compose.bom))
