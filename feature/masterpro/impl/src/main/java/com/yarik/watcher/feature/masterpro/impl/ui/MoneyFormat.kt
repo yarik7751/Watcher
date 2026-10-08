@@ -11,7 +11,8 @@ internal fun Long.formatKopecks(): String =
  * Возвращает null при любом неразборчивом вводе — UI обязан показать ошибку, а не угадывать.
  */
 internal fun parseMoneyToKopecks(input: String): Long? {
-    val normalized = input.trim().replace(" ", "").replace(" ", "").replace(',', '.')
+    // NBSP (\u00A0) приходит из автозамены клавиатуры — пишем экранированный литерал
+    val normalized = input.trim().replace(" ", "").replace("\u00A0", "").replace(',', '.')
     if (normalized.isEmpty()) return null
     val parts = normalized.split('.')
     if (parts.size > 2) return null
