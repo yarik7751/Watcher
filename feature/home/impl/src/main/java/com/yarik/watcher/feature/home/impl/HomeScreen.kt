@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -16,9 +17,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.calendar.api.CalendarJoyScreen
 import com.yarik.watcher.feature.layoutsandbox.api.LayoutSandboxJoyScreen
 import com.yarik.watcher.feature.masterpro.api.ClientsJoyScreen
@@ -39,10 +40,19 @@ fun HomeScreen(
 ) {
     val viewModel: HomeViewModel = viewModel(factory = viewModelFactory)
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.home_title),
+                onBackClick = { router.exit() },
+            )
+        },
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+        ) {
         val context = LocalContext.current
         Column(
             modifier = Modifier
@@ -51,12 +61,6 @@ fun HomeScreen(
                 .verticalScroll(rememberScrollState()),
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
-            Text(
-                modifier = Modifier,
-                text = stringResource(R.string.home_title),
-                fontSize = 28.sp
-            )
-
             Button(
                 modifier = Modifier
                     .padding(top = 8.dp),
@@ -212,6 +216,7 @@ fun HomeScreen(
             ) {
                 Text(text = stringResource(R.string.home_button_minesweeper))
             }
+        }
         }
     }
 }

@@ -13,6 +13,6 @@ class MinesweeperSettingsScreenProvider : ScreenContentProvider {
 
     @Composable
     override fun Content(viewModelFactory: ViewModelFactory, router: JoyRouter) {
-        MinesweeperSettingsScreen(viewModelFactory = viewModelFactory)
+        MinesweeperSettingsScreen(viewModelFactory = viewModelFactory, router = router)
     }
 }

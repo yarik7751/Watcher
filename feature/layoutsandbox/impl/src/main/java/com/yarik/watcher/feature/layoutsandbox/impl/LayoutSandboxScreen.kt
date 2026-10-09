@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableFloatStateOf
@@ -17,31 +18,47 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 
 /**
  * Песочница для изучения Compose Layout.
  */
 @Composable
-fun LayoutSandboxScreen(viewModelFactory: ViewModelFactory) {
+fun LayoutSandboxScreen(
+    viewModelFactory: ViewModelFactory,
+    router: JoyRouter,
+) {
     val viewModel: LayoutSandboxViewModel = viewModel(factory = viewModelFactory)
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        ActionButtonsList(
-            actions = state.actions,
-            onActionClick = viewModel::onActionClick,
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.layoutsandbox_title),
+                onBackClick = { router.exit() },
+            )
+        },
+    ) { padding ->
+        Box(
             modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Center)
-                .padding(24.dp),
-        )
+                .fillMaxSize()
+                .padding(padding)
+        ) {
+            ActionButtonsList(
+                actions = state.actions,
+                onActionClick = viewModel::onActionClick,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.Center)
+                    .padding(24.dp),
+            )
+        }
     }
 }
 

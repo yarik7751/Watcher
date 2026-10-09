@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.masterpro.impl.R
 
 @Composable
@@ -63,7 +64,15 @@ fun SettingsScreen(
         }
     }
 
-    Scaffold(snackbarHost = { SnackbarHost(snackbarHostState) }) { padding ->
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.settings_title),
+                onBackClick = { router.exit() },
+            )
+        },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -71,11 +80,6 @@ fun SettingsScreen(
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
         ) {
-            Text(
-                text = stringResource(R.string.settings_title),
-                style = MaterialTheme.typography.headlineSmall,
-            )
-
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()

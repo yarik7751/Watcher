@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="layoutsandbox_title">Layout Sandbox</string>
     <string name="layoutsandbox_button_title">Кнопка %1$d</string>
 </resources>

@@ -41,6 +41,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.database.entity.PriceItemEntity
 import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.masterpro.impl.R
 import com.yarik.watcher.feature.masterpro.impl.ui.formatKopecks
 import com.yarik.watcher.feature.masterpro.impl.ui.parseMoneyToKopecks
@@ -62,6 +63,12 @@ fun PriceScreen(
     }
 
     Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.price_title),
+                onBackClick = { router.exit() },
+            )
+        },
         snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             ExtendedFloatingActionButton(
@@ -76,12 +83,6 @@ fun PriceScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            Text(
-                modifier = Modifier.padding(16.dp),
-                text = stringResource(R.string.price_title),
-                style = MaterialTheme.typography.headlineSmall,
-            )
-
             if (state.items.isEmpty()) {
                 Text(
                     modifier = Modifier

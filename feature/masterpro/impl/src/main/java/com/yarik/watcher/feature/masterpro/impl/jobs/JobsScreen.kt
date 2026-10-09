@@ -49,6 +49,7 @@ import com.yarik.watcher.core.database.entity.JobStatus
 import com.yarik.watcher.core.database.entity.JobWithClient
 import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.masterpro.api.JobCardJoyScreen
 import com.yarik.watcher.feature.masterpro.impl.R
 import com.yarik.watcher.feature.masterpro.impl.ui.formatKopecks
@@ -96,6 +97,12 @@ fun JobsScreen(
     }
 
     Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.jobs_title),
+                onBackClick = { router.exit() },
+            )
+        },
         snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             ExtendedFloatingActionButton(
@@ -110,12 +117,6 @@ fun JobsScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            Text(
-                modifier = Modifier.padding(16.dp),
-                text = stringResource(R.string.jobs_title),
-                style = MaterialTheme.typography.headlineSmall,
-            )
-
             TabRow(selectedTabIndex = TABS.indexOfFirst { it.first == state.status }) {
                 TABS.forEach { (status, labelRes) ->
                     Tab(

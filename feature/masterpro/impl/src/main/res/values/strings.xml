@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="jobs_title">МастерPRO — Заявки</string>
+    <string name="jobcard_title">МастерPRO — Заявка</string>
+    <string name="clientcard_title">МастерPRO — Карточка клиента</string>
     <string name="jobs_tab_new">Новые</string>
     <string name="jobs_tab_in_progress">В работе</string>
     <string name="jobs_tab_await_payment">Жду оплату</string>

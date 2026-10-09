@@ -13,6 +13,6 @@ class RenderNodeScreenProvider : ScreenContentProvider {
 
     @Composable
     override fun Content(viewModelFactory: ViewModelFactory, router: JoyRouter) {
-        RenderNodeScreen()
+        RenderNodeScreen(router = router)
     }
 }

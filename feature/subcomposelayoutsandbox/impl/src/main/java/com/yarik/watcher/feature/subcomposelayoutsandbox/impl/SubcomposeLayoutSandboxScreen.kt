@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -14,11 +15,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.SubcomposeLayout
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.utils.textorresource.TextOrResource
 import com.yarik.watcher.utils.textorresource.getString
 
@@ -26,31 +30,44 @@ import com.yarik.watcher.utils.textorresource.getString
  * Песочница для изучения SubcomposeLayout.
  */
 @Composable
-fun SubcomposeLayoutSandboxScreen(viewModelFactory: ViewModelFactory) {
+fun SubcomposeLayoutSandboxScreen(
+    viewModelFactory: ViewModelFactory,
+    router: JoyRouter,
+) {
     val viewModel: SubcomposeLayoutSandboxViewModel = viewModel(factory = viewModelFactory)
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        Column(
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.subcompose_title),
+                onBackClick = { router.exit() },
+            )
+        },
+    ) { padding ->
+        Box(
             modifier = Modifier
-                .align(Alignment.Center),
-            horizontalAlignment = Alignment.CenterHorizontally,
+                .fillMaxSize()
+                .padding(padding)
         ) {
-            LoadingIndicator(
+            Column(
                 modifier = Modifier
-                    .size(200.dp),
-                text = TextOrResource.Resource(R.string.subcompose_loading),
-            )
+                    .align(Alignment.Center),
+                horizontalAlignment = Alignment.CenterHorizontally,
+            ) {
+                LoadingIndicator(
+                    modifier = Modifier
+                        .size(200.dp),
+                    text = TextOrResource.Resource(R.string.subcompose_loading),
+                )
 
-            LoadingIndicator(
-                modifier = Modifier
-                    .padding(top = 16.dp)
-                    .size(48.dp),
-                text = TextOrResource.Resource(R.string.subcompose_loading),
-            )
+                LoadingIndicator(
+                    modifier = Modifier
+                        .padding(top = 16.dp)
+                        .size(48.dp),
+                    text = TextOrResource.Resource(R.string.subcompose_loading),
+                )
+            }
         }
     }
 }

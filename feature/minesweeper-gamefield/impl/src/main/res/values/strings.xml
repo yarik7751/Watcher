@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="minesweeper_field_title">Сапер — Игра</string>
     <string name="minesweeper_cell_flag">⚑</string>
     <string name="minesweeper_cell_mine">✸</string>
 </resources>

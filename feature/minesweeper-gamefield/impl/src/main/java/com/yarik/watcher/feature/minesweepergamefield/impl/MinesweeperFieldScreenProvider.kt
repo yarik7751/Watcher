@@ -13,6 +13,6 @@ class MinesweeperFieldScreenProvider : ScreenContentProvider {
 
     @Composable
     override fun Content(viewModelFactory: ViewModelFactory, router: JoyRouter) {
-        MinesweeperFieldScreen(viewModelFactory = viewModelFactory)
+        MinesweeperFieldScreen(viewModelFactory = viewModelFactory, router = router)
     }
 }

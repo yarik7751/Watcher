@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
+            <option value="$PROJECT_DIR$/core/database" />
             <option value="$PROJECT_DIR$/core/navigation" />
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/feature" />
@@ -24,6 +25,9 @@
             <option value="$PROJECT_DIR$/feature/layoutsandbox" />
             <option value="$PROJECT_DIR$/feature/layoutsandbox/api" />
             <option value="$PROJECT_DIR$/feature/layoutsandbox/impl" />
+            <option value="$PROJECT_DIR$/feature/masterpro" />
+            <option value="$PROJECT_DIR$/feature/masterpro/api" />
+            <option value="$PROJECT_DIR$/feature/masterpro/impl" />
             <option value="$PROJECT_DIR$/feature/minesweeper" />
             <option value="$PROJECT_DIR$/feature/minesweeper-gamefield" />
             <option value="$PROJECT_DIR$/feature/minesweeper-gamefield/api" />

@@ -33,6 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.database.entity.ClientWithDebt
 import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.masterpro.api.ClientCardJoyScreen
 import com.yarik.watcher.feature.masterpro.impl.R
 import com.yarik.watcher.feature.masterpro.impl.ui.ClientFormDialog
@@ -55,6 +56,12 @@ fun ClientsScreen(
     }
 
     Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.clients_title),
+                onBackClick = { router.exit() },
+            )
+        },
         snackbarHost = { SnackbarHost(snackbarHostState) },
         floatingActionButton = {
             ExtendedFloatingActionButton(
@@ -69,12 +76,6 @@ fun ClientsScreen(
                 .fillMaxSize()
                 .padding(padding),
         ) {
-            Text(
-                modifier = Modifier.padding(16.dp),
-                text = stringResource(R.string.clients_title),
-                style = MaterialTheme.typography.headlineSmall,
-            )
-
             OutlinedTextField(
                 modifier = Modifier
                     .fillMaxWidth()

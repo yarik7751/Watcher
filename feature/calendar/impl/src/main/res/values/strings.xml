@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="calendar_title">Календарь</string>
     <string-array name="calendar_weekday_letters_monday_first">
         <item>ПН</item>
         <item>ВТ</item>

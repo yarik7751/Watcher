@@ -66,6 +66,7 @@ import com.yarik.watcher.core.database.entity.PhotoKind
 import com.yarik.watcher.core.database.entity.PriceItemEntity
 import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.masterpro.api.ClientCardJoyScreen
 import com.yarik.watcher.feature.masterpro.api.JobCardJoyScreen
 import com.yarik.watcher.feature.masterpro.impl.R
@@ -125,7 +126,15 @@ fun JobCardScreen(
         }
     }
 
-    Scaffold(snackbarHost = { SnackbarHost(snackbarHostState) }) { padding ->
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = state.details?.job?.title ?: stringResource(R.string.jobcard_title),
+                onBackClick = { router.exit() },
+            )
+        },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -152,9 +161,6 @@ fun JobCardScreen(
                         modifier = Modifier.padding(16.dp),
                         text = stringResource(R.string.jobcard_not_found),
                     )
-                    TextButton(onClick = { router.exit() }) {
-                        Text(text = stringResource(R.string.jobcard_back))
-                    }
                 }
 
                 else -> JobCardContent(
@@ -208,10 +214,6 @@ private fun JobCardContent(
     }
 
     Column(modifier = Modifier.padding(16.dp)) {
-        TextButton(onClick = { router.exit() }) {
-            Text(text = stringResource(R.string.jobcard_back))
-        }
-
         Row(verticalAlignment = Alignment.CenterVertically) {
             Text(
                 modifier = Modifier.weight(1f),

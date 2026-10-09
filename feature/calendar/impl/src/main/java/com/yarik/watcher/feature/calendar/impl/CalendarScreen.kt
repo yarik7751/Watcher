@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.produceState
@@ -17,7 +18,10 @@ import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import com.yarik.watcher.core.navigation.router.JoyRouter
+import com.yarik.watcher.core.ui.WatcherToolbar
 import kotlinx.coroutines.delay
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -33,7 +37,7 @@ private val GradientEnd = 0xFF3B78D8.toInt()
  * и показывает его на синем фоне, как в макете Figma.
  */
 @Composable
-fun CalendarScreen() {
+fun CalendarScreen(router: JoyRouter) {
     val context = LocalContext.current
     val density = LocalDensity.current
 
@@ -58,21 +62,31 @@ fun CalendarScreen() {
         }
     }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(PromoBackground),
-        contentAlignment = Alignment.Center,
-    ) {
-        bitmap?.let {
-            Image(
-                bitmap = it.asImageBitmap(),
-                contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(24.dp),
-                contentScale = ContentScale.FillWidth,
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.calendar_title),
+                onBackClick = { router.exit() },
             )
+        },
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .background(PromoBackground),
+            contentAlignment = Alignment.Center,
+        ) {
+            bitmap?.let {
+                Image(
+                    bitmap = it.asImageBitmap(),
+                    contentDescription = null,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(24.dp),
+                    contentScale = ContentScale.FillWidth,
+                )
+            }
         }
     }
 }

@@ -11,6 +11,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Card
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -25,6 +26,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.yarik.watcher.core.database.entity.ClientWithDebt
 import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.masterpro.api.ClientCardJoyScreen
 import com.yarik.watcher.feature.masterpro.impl.R
 import com.yarik.watcher.feature.masterpro.impl.data.model.PeriodStats
@@ -40,56 +42,60 @@ fun StatsScreen(
     val viewModel: StatsViewModel = viewModel(factory = viewModelFactory)
     val state by viewModel.uiState.collectAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-    ) {
-        Text(
-            modifier = Modifier.padding(16.dp),
-            text = stringResource(R.string.stats_title),
-            style = MaterialTheme.typography.headlineSmall,
-        )
-
-        TabRow(selectedTabIndex = PERIODS.indexOf(state.period)) {
-            PERIODS.forEach { period ->
-                Tab(
-                    selected = state.period == period,
-                    onClick = { viewModel.selectPeriod(period) },
-                    text = {
-                        Text(
-                            text = stringResource(
-                                if (period == StatsPeriod.MONTH) R.string.stats_period_month
-                                else R.string.stats_period_year,
-                            ),
-                        )
-                    },
-                )
-            }
-        }
-
-        StatsCards(stats = state.stats)
-
-        HorizontalDivider(modifier = Modifier.padding(16.dp))
-
-        Text(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            text = stringResource(R.string.stats_section_debtors),
-            style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold,
-        )
-        if (state.debtors.isEmpty()) {
-            Text(
-                modifier = Modifier.padding(16.dp),
-                text = stringResource(R.string.stats_debtors_empty),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.stats_title),
+                onBackClick = { router.exit() },
             )
-        } else {
-            state.debtors.forEach { debtor ->
-                DebtorRow(
-                    debtor = debtor,
-                    onClick = { router.navigateTo(ClientCardJoyScreen.create(debtor.client.id)) },
+        },
+    ) { padding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .verticalScroll(rememberScrollState()),
+        ) {
+            TabRow(selectedTabIndex = PERIODS.indexOf(state.period)) {
+                PERIODS.forEach { period ->
+                    Tab(
+                        selected = state.period == period,
+                        onClick = { viewModel.selectPeriod(period) },
+                        text = {
+                            Text(
+                                text = stringResource(
+                                    if (period == StatsPeriod.MONTH) R.string.stats_period_month
+                                    else R.string.stats_period_year,
+                                ),
+                            )
+                        },
+                    )
+                }
+            }
+
+            StatsCards(stats = state.stats)
+
+            HorizontalDivider(modifier = Modifier.padding(16.dp))
+
+            Text(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                text = stringResource(R.string.stats_section_debtors),
+                style = MaterialTheme.typography.titleMedium,
+                fontWeight = FontWeight.Bold,
+            )
+            if (state.debtors.isEmpty()) {
+                Text(
+                    modifier = Modifier.padding(16.dp),
+                    text = stringResource(R.string.stats_debtors_empty),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
                 )
+            } else {
+                state.debtors.forEach { debtor ->
+                    DebtorRow(
+                        debtor = debtor,
+                        onClick = { router.navigateTo(ClientCardJoyScreen.create(debtor.client.id)) },
+                    )
+                }
             }
         }
     }

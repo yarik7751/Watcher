@@ -19,6 +19,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,36 +41,48 @@ import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.withTranslation
+import com.yarik.watcher.core.navigation.router.JoyRouter
+import com.yarik.watcher.core.ui.WatcherToolbar
 import kotlin.math.min
 
 /**
  * Экран для изучения RenderNode.
  */
 @Composable
-fun RenderNodeScreen() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .verticalScroll(rememberScrollState()),
-    ) {
-        Column(
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Center)
-                .padding(vertical = 24.dp),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-        ) {
-            Text(
-                text = stringResource(R.string.rendernode_title),
-                fontSize = 28.sp,
+fun RenderNodeScreen(router: JoyRouter) {
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = stringResource(R.string.rendernode_title),
+                onBackClick = { router.exit() },
             )
+        },
+    ) { padding ->
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+                .verticalScroll(rememberScrollState()),
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.Center)
+                    .padding(vertical = 24.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    text = stringResource(R.string.rendernode_title),
+                    fontSize = 28.sp,
+                )
 
-            Counter()
+                Counter()
 
-            Spacer(modifier = Modifier.height(32.dp))
+                Spacer(modifier = Modifier.height(32.dp))
 
-            RenderNodeDemo()
+                RenderNodeDemo()
+            }
         }
     }
 }

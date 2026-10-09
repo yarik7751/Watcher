@@ -13,6 +13,6 @@ class CalendarScreenProvider : ScreenContentProvider {
 
     @Composable
     override fun Content(viewModelFactory: ViewModelFactory, router: JoyRouter) {
-        CalendarScreen()
+        CalendarScreen(router = router)
     }
 }

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="minesweeper_title">Сапер</string>
     <string name="minesweeper_start_game">Start game</string>
 </resources>

@@ -43,6 +43,7 @@ import androidx.navigation.NavBackStackEntry
 import com.yarik.watcher.core.database.entity.JobWithClient
 import com.yarik.watcher.core.navigation.router.JoyRouter
 import com.yarik.watcher.core.ui.ViewModelFactory
+import com.yarik.watcher.core.ui.WatcherToolbar
 import com.yarik.watcher.feature.masterpro.api.ClientCardJoyScreen
 import com.yarik.watcher.feature.masterpro.api.JobCardJoyScreen
 import com.yarik.watcher.feature.masterpro.impl.R
@@ -77,7 +78,15 @@ fun ClientCardScreen(
         viewModel.deleted.collect { router.exit() }
     }
 
-    Scaffold(snackbarHost = { SnackbarHost(snackbarHostState) }) { padding ->
+    Scaffold(
+        topBar = {
+            WatcherToolbar(
+                title = state.client?.name ?: stringResource(R.string.clientcard_title),
+                onBackClick = { router.exit() },
+            )
+        },
+        snackbarHost = { SnackbarHost(snackbarHostState) },
+    ) { padding ->
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -90,9 +99,6 @@ fun ClientCardScreen(
                         modifier = Modifier.padding(16.dp),
                         text = stringResource(R.string.clientcard_not_found),
                     )
-                    TextButton(onClick = { router.exit() }) {
-                        Text(text = stringResource(R.string.clientcard_back))
-                    }
                 }
 
                 state.loading -> {
@@ -125,10 +131,6 @@ private fun ClientCardContent(
     var deleteConfirmOpen by rememberSaveable { mutableStateOf(false) }
 
     Column(modifier = Modifier.padding(16.dp)) {
-        TextButton(onClick = { router.exit() }) {
-            Text(text = stringResource(R.string.clientcard_back))
-        }
-
         Text(
             text = client.name,
             style = MaterialTheme.typography.headlineSmall,

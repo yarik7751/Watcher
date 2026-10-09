@@ -13,6 +13,6 @@ class LayoutSandboxScreenProvider : ScreenContentProvider {
 
     @Composable
     override fun Content(viewModelFactory: ViewModelFactory, router: JoyRouter) {
-        LayoutSandboxScreen(viewModelFactory = viewModelFactory)
+        LayoutSandboxScreen(viewModelFactory = viewModelFactory, router = router)
     }
 }
