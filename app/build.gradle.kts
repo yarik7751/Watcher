@@ -7,7 +7,7 @@ plugins {
     id("kotlin-parcelize")
     kotlin("plugin.serialization") version "1.9.0"
     id("com.google.gms.google-services")
-    kotlin("kapt")
+    alias(libs.plugins.ksp)
 }
 
 val localProperties = Properties()
@@ -67,7 +67,7 @@ android {
 dependencies {
     implementation("com.google.dagger:dagger-android:2.56.2")
     implementation("com.google.dagger:dagger-android-support:2.56.2")
-    kapt("com.google.dagger:dagger-compiler:2.56.2")
+    ksp("com.google.dagger:dagger-compiler:2.56.2")
 
     implementation(libs.androidx.lifecycle.viewmodel.compose)
 
